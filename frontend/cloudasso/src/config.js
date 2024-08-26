@@ -1,4 +1,7 @@
 export default {
+  devServer: {
+    proxy: 'http://backend.test/',
+  },
   colors: {
     default: "#344675",
     primary: "#42b883",

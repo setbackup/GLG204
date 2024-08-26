@@ -19,7 +19,7 @@ import CampagneGoodiesConsulter from '@/admin/campagne_goodies/CampagneGoodiesCo
 import Inscription from '@/inscription/Inscription.vue'
 import Adhesion from '@/Adhesion.vue'
 
-import Accueil from '@/adherent/acueil/Accueil.vue'
+import Accueil from '@/adherent/accueil/Accueil.vue'
 import DetailCampagne from '@/adherent/campagne/Campagne.vue'
 import Donnation from '@/adherent/campagne/Dons.vue'
 import Goodie from '@/adherent/campagne/Goodie.vue'

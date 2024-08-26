@@ -31,7 +31,8 @@ public class SecurityConfig{
             a.requestMatchers(HttpMethod.POST, "/inscription").permitAll()
             .requestMatchers(HttpMethod.POST, "/login").permitAll()
 
-            .requestMatchers(HttpMethod.GET, "/admin/adherent").permitAll()
+            .requestMatchers(HttpMethod.GET, "/admin/adherent").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST, "/admin/adherent").hasRole("ADMIN")
             
             .requestMatchers(HttpMethod.POST, "/campagnes_dons/creation").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/campagnes_dons/consulter").permitAll()
