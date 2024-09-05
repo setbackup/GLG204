@@ -35,6 +35,7 @@ public class SecurityConfig{
             .requestMatchers(HttpMethod.POST, "/admin/adherent").hasRole("ADMIN")
             
             .requestMatchers(HttpMethod.POST, "/campagnes_dons/creation").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/campagnes_dons/supprimer/*").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/campagnes_dons/consulter").permitAll()
             
             .requestMatchers(HttpMethod.POST, "/campagne_goodies/creation").hasRole("ADMIN")

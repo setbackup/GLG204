@@ -5,6 +5,8 @@ import cnam.sebastienmarie.cloudassociation.admin.campagne_dons.dto.CampagneDons
 import cnam.sebastienmarie.cloudassociation.admin.campagne_dons.service.CreationCampangeDonsService;
 import cnam.sebastienmarie.cloudassociation.common.association.dao.AssociationDAO;
 import cnam.sebastienmarie.cloudassociation.common.association.domain.Associations;
+import cnam.sebastienmarie.cloudassociation.common.campagne.dao.CampagneDonsDAO;
+import cnam.sebastienmarie.cloudassociation.common.campagne.dao.DonsDAO;
 import cnam.sebastienmarie.cloudassociation.common.campagne.domain.CampagneDons;
 import cnam.sebastienmarie.cloudassociation.common.service.JWTResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,7 +19,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -36,9 +40,15 @@ public class CampagneDonsController<CeationCampangeDons> {
 
    @Autowired
    AssociationDAO associationDAO;
+
+   @Autowired
+   CampagneDonsDAO campagneDonsDAO;
    
    @Autowired
    JWTResult jwtResult;
+
+   @Autowired
+   DonsDAO donDao;
 
    @PostMapping(
       value = {"/creation"},
@@ -64,9 +74,16 @@ public class CampagneDonsController<CeationCampangeDons> {
       objectMapper.setDateFormat(df);
       String jsonArray = objectMapper.writeValueAsString(lstCampagneDons);
 
-      System.out.println(jsonArray);
-
-
       return ResponseEntity.ok().body(jsonArray);
+   }
+
+   @DeleteMapping("/supprimer/{id}")
+   ResponseEntity<?> deleteCampagneDons(@PathVariable("id") String idCampagneDon){
+      
+      //donDao.deleteByIdCampagnesDons(idCampagneDon);
+
+      campagneDonsDAO.deleteBy(idCampagneDon);
+
+      return ResponseEntity.ok().body("Suppresion de la campagne OK");
    }
 }

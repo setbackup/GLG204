@@ -14,4 +14,9 @@ public interface CampagneDonsDAO extends JpaRepository<CampagneDons, String> {
 
    List<CampagneDons> findByAssociation(Optional<Associations> association);
    
+   //@Modifying
+   //@Query(value ="DELETE FROM campagnes_dons c WHERE c.id= ?1", nativeQuery = true)
+   //void deleteById(String idCampagne);  
+   void deleteBy(String idCampagne);
+
 }

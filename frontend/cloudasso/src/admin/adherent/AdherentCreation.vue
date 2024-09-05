@@ -75,12 +75,7 @@ export default{
     },
     methods:{
         addAdhesion(){
-            
-            console.log(this.adhesion);
-
-            
-
-            axios.post('http://localhost:8080/admin/adherent',this.adhesion,{
+        axios.post('http://localhost:8080/admin/adherent',this.adhesion,{
                 headers:{
                     "Access-Control-Allow-Origin":"*",
                     "Content-Type" : "application/json",

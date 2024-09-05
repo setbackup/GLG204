@@ -22,7 +22,7 @@
                         <img width="25" height="25" src="../../assets/loupe.png" />
                     </RouterLink></td>
                 <td>
-                    <a @click="supprime" >
+                    <a @click="supprime(campagneDons.id)">
                         <img width="25" height="25" src="../../assets/corbeille.png" />
                     </a>
                 </td>
@@ -34,18 +34,31 @@
 <script>
 
 import Menu from '@/admin/components/Menu.vue'
+import router from '@/router/router';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default{
     name: 'CampagneDonsConsulter',
     data(){
+        const router = useRouter();
         return {
+            deleteCampagne :'',
             campagnesDons : []
         }
     },
     methods: {
-        supprime(){
-            console.log("OK event");
+        supprime(id){
+            console.log("id de la campagne" + id);
+            axios.delete('http://localhost:8080/campagnes_dons/supprimer/'+id,{
+                headers:{
+                       "Content-Type" : "application/json",
+                       "Authorization" : "bearer "+localStorage.getItem('jeton')
+                   } 
+            }).then(response=>{
+                console.log("Supprime OK");
+                router.go();
+            })
         }
     },
     mounted(){
